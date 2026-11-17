@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: medicita
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/medicita_spring?serverTimezone=America/Bogota
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
