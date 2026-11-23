@@ -31,4 +31,12 @@ public class ManejadorGlobalExcepciones {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorResponse(mensaje));
     }
+
+    // Error de configuración (ej. falta el rol PACIENTE) -> 500
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<ErrorResponse> manejarConfiguracion(IllegalStateException ex) {
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ErrorResponse(ex.getMessage()));
+    }
 }
