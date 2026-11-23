@@ -1,5 +1,10 @@
 package com.medicita.medicita.entity;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,4 +27,12 @@ public class Medico {
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_especialidad")
     private Especialidad especialidad;
+
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 }
