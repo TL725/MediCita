@@ -29,9 +29,12 @@ public class SecurityConfig {
             .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers("/error").permitAll()
                 .requestMatchers("/", "/*.html", "/css/**", "/js/**",
                                  "/img/**", "/images/**", "/favicon.ico").permitAll()
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                .requestMatchers("/api/medico/**").hasRole("MEDICO")
+                .requestMatchers("/api/paciente/**").hasRole("PACIENTE")
                 .anyRequest().authenticated()
             )
             .exceptionHandling(e -> e.authenticationEntryPoint(
@@ -50,5 +53,6 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config)
             throws Exception {
         return config.getAuthenticationManager();
+        
     }
 }
