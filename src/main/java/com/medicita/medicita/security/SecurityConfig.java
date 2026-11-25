@@ -33,6 +33,8 @@ public class SecurityConfig {
                 .requestMatchers("/", "/*.html", "/css/**", "/js/**",
                                  "/img/**", "/images/**", "/favicon.ico").permitAll()
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                .requestMatchers("/api/medico/**").hasRole("MEDICO")
+                .requestMatchers("/api/paciente/**").hasRole("PACIENTE")
                 .anyRequest().authenticated()
             )
             .exceptionHandling(e -> e.authenticationEntryPoint(
