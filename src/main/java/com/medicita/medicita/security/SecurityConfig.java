@@ -29,6 +29,7 @@ public class SecurityConfig {
             .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers("/error").permitAll()
                 .requestMatchers("/", "/*.html", "/css/**", "/js/**",
                                  "/img/**", "/images/**", "/favicon.ico").permitAll()
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
@@ -50,5 +51,6 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config)
             throws Exception {
         return config.getAuthenticationManager();
+        
     }
 }
